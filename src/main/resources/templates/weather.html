@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div th:replace="fragments :: navbar"></div>
+<form method="post" th:action="@{weather}" th:object="${coordinates}">
+    <input id="latitude" placeholder="Enter latitude" required type="text" th:field="*{latitude}"/>
+    <input id="longitude" placeholder="Enter longitude" required type="text" th:field="*{longitude}"/>
+    <input type="submit" value="Send weather request">
+</form>
+
+<div th:if="${temperature != null}">
+    <p th:text="${'Temperature: ' + temperature + ' C'}"></p>
+</div>
+<div th:if="${pressure != null}">
+    <p th:text="${'Air pressure: ' + pressure + ' bars'}"></p>
+</div>
+<div th:if="${humidity != null}">
+    <p th:text="${'Humidity: ' + humidity + ' %'}"></p>
+</div>
+<div th:if="${wind != null}">
+    <p th:text="${'Wind speed: ' + wind + ' km/h'}"></p>
+</div>
+<div th:if="${clouds != null}">
+    <p th:text="${'Cloudiness: ' + clouds + ' %'}"></p>
+</div>
+</body>
+</html>
