@@ -8,22 +8,22 @@ import java.util.List;
 @Service
 public class ItemService {
 
-    ItemRepository studentRepository;
+    ItemRepository itemRepository;
 
     @Autowired
-    ItemService(ItemRepository studentRepository) {
-        this.studentRepository = studentRepository;
+    ItemService(ItemRepository itemRepository) {
+        this.itemRepository = itemRepository;
     }
 
     List<Item> getItemsList(){
-        return studentRepository.findAll();
+        return itemRepository.findAll();
     }
 
     void deleteItem(String id){
-        studentRepository.deleteById(Long.parseLong(id));
+        itemRepository.deleteById(Long.parseLong(id));
     }
 
-    void saveItem(Item student){
-        studentRepository.save(student);
+    void saveItem(Item item){
+        itemRepository.save(item);
     }
 }

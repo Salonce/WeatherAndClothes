@@ -2,17 +2,41 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="description" content="weather checker">
+    <meta name="author" content="Salonce">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
+    <!-- Required meta tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Other CSS -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-<div th:replace="fragments :: navbar"></div>
+<div th:replace="~{fragments :: navbar}"></div>
+<!--
 <form method="post" th:action="@{weather}" th:object="${coordinates}">
     <input id="latitude" placeholder="Enter latitude" required type="text" th:field="*{latitude}"/>
     <input id="longitude" placeholder="Enter longitude" required type="text" th:field="*{longitude}"/>
     <input type="submit" value="Send weather request">
 </form>
+-->
+
+<form method="post" th:action="@{weather}" th:object="${coordinates}" class="ml-3">
+    <div class="form-group">
+        <label for="latitude">Latitude</label>
+        <input type="number" class="form-control" id="latitude" aria-describedby="latitudeHelp" placeholder="Enter latitude">
+        <small id="latitudeHelp" class="form-text text-muted">-90.0 to 90.0 values allowed</small>
+    </div>
+    <div class="form-group">
+        <input type="number" class="form-control" id="longitude" aria-describedby="longitudeHelp" placeholder="Enter longitude">
+        <small id="longitudeHelp" class="form-text text-muted">-180.0 to 180.0 values allowed</small>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
 
 <div th:if="${temperature != null}">
     <p th:text="${'Temperature: ' + temperature + ' C'}"></p>

@@ -6,8 +6,8 @@
 </head>
 <body>
 
-<nav class="topnav" th:fragment="navbar">
-    <a th:class="${activePage == 'student' ? 'active' : ''}" href="student">student</a>
+<nav class="topnav mb-3" th:fragment="navbar">
+    <a th:class="${activePage == 'item' ? 'active' : ''}" href="item">wardrobe</a>
     <a th:class="${activePage == 'weather' ? 'active' : ''}" href="weather">weather</a>
 </nav>
 
@@ -18,7 +18,7 @@
 
 
     <a th:class="${activePage == 'home' ? 'active' : ''}" href="home">home</a>
-    <a th:class="${activePage == 'student' ? 'active' : ''}" href="student">student</a>
+    <a th:class="${activePage == 'item' ? 'active' : ''}" href="item">item</a>
     <a th:class="${activePage == 'weather' ? 'active' : ''}" href="weather">weather</a>
     <a th:class="${activePage == 'sadge' ? 'active' : ''}" href="sadge">sadge</a>
 -->

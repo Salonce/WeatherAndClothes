@@ -9,9 +9,9 @@ public class ItemConfig {
     @Bean
     CommandLineRunner commandLineRunner(ItemRepository repository){
         return args -> {
-            Item student = new Item();
-            student.setName("Arnold");
-            repository.save(student);
+            Item item = new Item();
+            item.setName("Arnold");
+            repository.save(item);
         };
     }
     */

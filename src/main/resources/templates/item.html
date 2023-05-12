@@ -17,10 +17,10 @@
 <body>
 
 <div th:replace="~{fragments :: navbar}"></div>
-<form method="post" th:action="@{student}" th:object="${studentToAdd}">
+<form method="post" th:action="@{item}" th:object="${itemToAdd}" class="ml-3  w-75">
   <div class="input-group mb-3">
     <div class="input-group-prepend">
-      <button class="btn btn-outline-secondary" type="submit">Add student</button>
+      <button class="btn btn-outline-secondary" type="submit">Add item</button>
     </div>
     <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1" th:field="*{name}">
   </div>
@@ -28,7 +28,7 @@
 </form>
 
 
-<table class="table table-dark">
+<table class="table table-dark ml-3 w-75">
   <thead>
   <tr>
     <th>ID</th>
@@ -37,12 +37,13 @@
   </tr>
   </thead>
   <tbody>
-  <tr th:each="oneItem: ${studentList}">
-    <td th:text="${oneItem.id}" />
+  <tr th:each="oneItem, iStat : ${itemList}">
+    <!-- <td th:text="${oneItem.id}" /> -->
+    <td th:text="${iStat.index + 1}" />
     <td th:text="${oneItem.name}" />
     <td>
-      <form th:action="@{student}" method="post">
-        <button name="studentId" type="submit" class="btn btn-danger" th:value="${oneItem.id}">Remove row</button>
+      <form th:action="@{item}" method="post">
+        <button name="itemId" type="submit" class="btn btn-danger" th:value="${oneItem.id}">Remove row</button>
       </form>
     </td>
   </tr>

@@ -6,39 +6,39 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/student")
+@RequestMapping("/item")
 public class ItemController {
 
-    private ItemService studentService;
+    private ItemService itemService;
 
     @Autowired
-    ItemController(ItemService studentService){
-        this.studentService = studentService;
+    ItemController(ItemService itemService){
+        this.itemService = itemService;
     }
 
     @ModelAttribute
     void addAttributes(Model model){
-        model.addAttribute("studentToAdd", new Item());
-        model.addAttribute("studentIdToRemove", "");
-        model.addAttribute("activePage", "student");
+        model.addAttribute("itemToAdd", new Item());
+        model.addAttribute("itemIdToRemove", "");
+        model.addAttribute("activePage", "item");
     }
 
     @GetMapping
     public String get(@RequestParam(value="name", required = false) String name, Model model){
-        model.addAttribute("studentList", studentService.getItemsList());
-        return "student";
+        model.addAttribute("itemList", itemService.getItemsList());
+        return "item";
     }
 
     @PostMapping(params = "name")
-    public String post(@ModelAttribute("studentToAdd") Item studentToAdd, Model model){
-        studentService.saveItem(studentToAdd);
-        model.addAttribute("studentList", studentService.getItemsList());
-        return "student";
+    public String post(@ModelAttribute("itemToAdd") Item itemToAdd, Model model){
+        itemService.saveItem(itemToAdd);
+        model.addAttribute("itemList", itemService.getItemsList());
+        return "item";
     }
-    @PostMapping(params = "studentId")
-    public String post(@RequestParam(value="studentId", required = true) String id, Model model){
-        studentService.deleteItem(id);
-        model.addAttribute("studentList", studentService.getItemsList());
-        return "student";
+    @PostMapping(params = "itemId")
+    public String post(@RequestParam(value="itemId", required = true) String id, Model model){
+        itemService.deleteItem(id);
+        model.addAttribute("itemList", itemService.getItemsList());
+        return "item";
     }
 }
