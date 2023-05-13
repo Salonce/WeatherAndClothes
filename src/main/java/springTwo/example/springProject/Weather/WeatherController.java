@@ -33,7 +33,7 @@ public class WeatherController {
     //@GetMapping(value="/weatherr", consumes="application/json")
     @PostMapping(value="/weather")
     String getPostWeather(@ModelAttribute("coordinates") Coordinates coordinates, Model model){
-        model.addAttribute("lat", coordinates.getLatitude());
+        model.addAttribute("latitude", coordinates.getLatitude());
         model.addAttribute("long", coordinates.getLongitude());
         WeatherDTO weatherDTO = weatherService.getWeather(coordinates.getLatitude(), coordinates.getLongitude());
         //model.addAttribute("minTemperature", weatherDTO.getMain().getTemp_min());
