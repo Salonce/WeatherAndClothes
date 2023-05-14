@@ -388,6 +388,12 @@ public class WeatherDTO implements Serializable {
 }
 
 class Coordinates{
+    Coordinates(){};
+    Coordinates(String latitude, String longitude){
+        this.latitude = latitude;
+        this.longitude = longitude;
+    };
+
     private String latitude;
     private String longitude;
 

@@ -13,31 +13,123 @@
     <!-- Other CSS -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
+
+
 <body>
 <div th:replace="~{fragments :: navbar}"></div>
+
+<form method="post" th:action="@{weather}" th:object="${coordinates}" class="ml-3">
+    <div class="form-group row">
+        <label for="latitude" class="col-sm-1 col-form-label">Latitude</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="latitude" aria-describedby="latitudeHelp" placeholder="Enter latitude" th:field="*{latitude}">
+            <small id="latitudeHelp" class="form-text text-muted">-90.0 to 90.0 values allowed</small>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="longitude" class="col-sm-1 col-form-label">Longitude</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="longitude" aria-describedby="longitudeHelp" placeholder="Enter longitude" th:field="*{longitude}">
+            <small id="longitudeHelp" class="form-text text-muted">-180.0 to 180.0 values allowed</small>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-1 col-form-label"></label>
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+</form>
+
 <!--
-<form method="post" th:action="@{weather}" th:object="${coordinates}">
-    <input id="latitude" placeholder="Enter latitude" required type="text" th:field="*{latitude}"/>
-    <input id="longitude" placeholder="Enter longitude" required type="text" th:field="*{longitude}"/>
-    <input type="submit" value="Send weather request">
+<br>
+<p> OR </p>
+<br>
+
+
+<form method="post" th:action="@{weather}" th:object="${cityName}" class="ml-3">
+    <div class="form-group row">
+        <label for="city" class="col-sm-1 col-form-label">City</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="city" aria-describedby="latitudeHelp" placeholder="Enter city name" th:field="${cityName}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-1 col-form-label"></label>
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
 </form>
 -->
 
-<form method="post" th:action="@{weather}" th:object="${coordinates}" class="ml-3">
-    <div class="form-group">
-        <label for="latitude">Latitude</label>
-        <input type="text" class="form-control" id="latitude" aria-describedby="latitudeHelp" placeholder="Enter latitude" th:field="*{latitude}">
-        <small id="latitudeHelp" class="form-text text-muted">-90.0 to 90.0 values allowed</small>
+<!--
+    <div class="form-group row">
+        <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+          <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+        <div class="col-sm-10">
+          <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+        </div>
+      </div>
+
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <button class="btn btn-outline-secondary" type="submit">Add item</button>
+        </div>
+        <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1" th:field="*{name}">
     </div>
-    <div class="form-group">
-        <input type="text" class="form-control" id="longitude" aria-describedby="longitudeHelp" placeholder="Enter longitude" th:field="*{longitude}">
-        <small id="longitudeHelp" class="form-text text-muted">-180.0 to 180.0 values allowed</small>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+-->
 
+<br>
 
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Temperature</th>
+        <th scope="col">Air pressure</th>
+        <th scope="col">Humidity</th>
+        <th scope="col">Wind speed</th>
+        <th scope="col">Cloudiness</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            <div th:if="${temperature != null}">
+                <p th:text="${temperature + ' C'}"></p>
+            </div></th>
+        </td>
+        <td>
+            <div th:if="${pressure != null}">
+                <p th:text="${pressure + ' bars'}"></p>
+            </div>
+        </td>
+        <td>
+            <div th:if="${humidity != null}">
+                <p th:text="${humidity + '%'}"></p>
+            </div>
+        </td>
+        <td>
+            <div th:if="${wind != null}">
+                <p th:text="${wind + ' km/h'}"></p>
+            </div>
+        </td>
+        <td>
+            <div th:if="${clouds != null}">
+                <p th:text="${clouds + '%'}"></p>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
 
+<!--
 <div th:if="${temperature != null}">
     <p th:text="${'Temperature: ' + temperature + ' C'}"></p>
 </div>
@@ -53,5 +145,7 @@
 <div th:if="${clouds != null}">
     <p th:text="${'Cloudiness: ' + clouds + ' %'}"></p>
 </div>
+-->
+
 </body>
 </html>

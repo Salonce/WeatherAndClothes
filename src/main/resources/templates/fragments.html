@@ -7,21 +7,9 @@
 <body>
 
 <nav class="topnav mb-3" th:fragment="navbar">
-    <a th:class="${activePage == 'item' ? 'active' : ''}" href="item">wardrobe</a>
-    <a th:class="${activePage == 'weather' ? 'active' : ''}" href="weather">weather</a>
+    <a th:class="${activePage == 'item' ? 'active' : ''}" href="wardrobe">Wardrobe</a>
+    <a th:class="${activePage == 'weather' ? 'active' : ''}" href="weather">Weather</a>
 </nav>
-
-<!--
-<nav class="navbar navbar-dark bg-dark" th:fragment="navbar">
-<div class="topnav" th:fragment="navbar">
-</div>
-
-
-    <a th:class="${activePage == 'home' ? 'active' : ''}" href="home">home</a>
-    <a th:class="${activePage == 'item' ? 'active' : ''}" href="item">item</a>
-    <a th:class="${activePage == 'weather' ? 'active' : ''}" href="weather">weather</a>
-    <a th:class="${activePage == 'sadge' ? 'active' : ''}" href="sadge">sadge</a>
--->
 
 </body>
 </html>

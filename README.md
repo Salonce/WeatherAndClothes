@@ -12,7 +12,7 @@ Application let's us store items in our wardrobe and check the weather under spe
 - JPA and HIBERNATE
 
 <b>How to run?</b> <br>
-To run the application we need to create an "application.properties" file under "src/main/resources/application.properties" with configuration filled as followed (mySQL database can be changed to other): <br>
+To run the application we need to create an "application.properties" file under "src/main/resources/application.properties" with tokenConfig filled as followed (mySQL database can be changed to other): <br>
  <br> 
 /////////////////// <br>
 spring.jpa.hibernate.ddl-auto=update <br>

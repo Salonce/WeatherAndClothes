@@ -17,7 +17,8 @@
 <body>
 
 <div th:replace="~{fragments :: navbar}"></div>
-<form method="post" th:action="@{item}" th:object="${itemToAdd}" class="ml-3  w-75">
+
+<form method="post" th:action="@{wardrobe}" th:object="${itemToAdd}" class="ml-3  w-75">
   <div class="input-group mb-3">
     <div class="input-group-prepend">
       <button class="btn btn-outline-secondary" type="submit">Add item</button>
@@ -28,12 +29,12 @@
 </form>
 
 
-<table class="table table-dark ml-3 w-75">
+<table class="table ml-3 w-75">
   <thead>
   <tr>
-    <th>ID</th>
-    <th>name</th>
-    <th>remove?</th>
+    <th>NO.</th>
+    <th>ITEM</th>
+    <th> </th>
   </tr>
   </thead>
   <tbody>
@@ -42,8 +43,8 @@
     <td th:text="${iStat.index + 1}" />
     <td th:text="${oneItem.name}" />
     <td>
-      <form th:action="@{item}" method="post">
-        <button name="itemId" type="submit" class="btn btn-danger" th:value="${oneItem.id}">Remove row</button>
+      <form th:action="@{wardrobe}" method="post">
+        <button name="itemId" type="submit" class="btn btn-danger" th:value="${oneItem.id}">Remove item</button>
       </form>
     </td>
   </tr>
