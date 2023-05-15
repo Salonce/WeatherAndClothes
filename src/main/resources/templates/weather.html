@@ -41,17 +41,17 @@
     </div>
 </form>
 
-<!--
+
 <br>
 <p> OR </p>
 <br>
 
 
-<form method="post" th:action="@{weather}" th:object="${cityName}" class="ml-3">
+<form method="post" th:action="@{weather}" class="ml-3">
     <div class="form-group row">
-        <label for="city" class="col-sm-1 col-form-label">City</label>
+        <label for="cityName" class="col-sm-1 col-form-label">City</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="city" aria-describedby="latitudeHelp" placeholder="Enter city name" th:field="${cityName}">
+            <input type="text" name="cityName" class="form-control" id="cityName" aria-describedby="latitudeHelp" placeholder="Enter city name">
         </div>
     </div>
     <div class="form-group row">
@@ -61,30 +61,6 @@
         </div>
     </div>
 </form>
--->
-
-<!--
-    <div class="form-group row">
-        <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-        <div class="col-sm-10">
-          <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-        <div class="col-sm-10">
-          <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-        </div>
-      </div>
-
-
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <button class="btn btn-outline-secondary" type="submit">Add item</button>
-        </div>
-        <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1" th:field="*{name}">
-    </div>
--->
 
 <br>
 
@@ -99,30 +75,30 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <td>
-            <div th:if="${temperature != null}">
-                <p th:text="${temperature + ' C'}"></p>
-            </div></th>
-        </td>
-        <td>
-            <div th:if="${pressure != null}">
-                <p th:text="${pressure + ' bars'}"></p>
+    <tr th:each="weath : ${weatherDTOList}">
+        <td >
+            <div>
+                <p th:text="${weath.main.temp_max + ' C'}"></p>
             </div>
         </td>
         <td>
-            <div th:if="${humidity != null}">
-                <p th:text="${humidity + '%'}"></p>
+            <div th:if="${weath != null}">
+                <p th:text="${weath.main.pressure + ' bars'}"></p>
             </div>
         </td>
         <td>
-            <div th:if="${wind != null}">
-                <p th:text="${wind + ' km/h'}"></p>
+            <div th:if="${weath != null}">
+                <p th:text="${weath.main.humidity + '%'}"></p>
             </div>
         </td>
         <td>
-            <div th:if="${clouds != null}">
-                <p th:text="${clouds + '%'}"></p>
+            <div th:if="${weath != null}">
+                <p th:text="${weath.wind.speed + ' km/h'}"></p>
+            </div>
+        </td>
+        <td>
+            <div th:if="${weath != null}">
+                <p th:text="${weath.clouds.all + '%'}"></p>
             </div>
         </td>
     </tr>
