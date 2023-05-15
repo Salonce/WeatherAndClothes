@@ -1,10 +1,15 @@
 # WeatherAndClothes v1.0
 Application let's us check the weather in specific city/under specific coordinates and allows us store items in a wardrobe.
 
+
+![2Ltadu7](https://github.com/Salonce/WeatherAndClothes/assets/27849647/b6cec21b-384e-4040-a15a-d71dcf811bd2)
+![adJInF9](https://github.com/Salonce/WeatherAndClothes/assets/27849647/b05f0507-b446-4035-ad84-f5f3e2aab81a)
+
 <b> About the project: </b>
-- uses Java with Spring Framework, Tomcat Server
+- Uses Java with Spring Framework, Tomcat Server
 - Frontend: HTML, Thymeleaf, Bootstrap 
 - MySQL database (modifiable) with JPA and HIBERNATE
+
 
 <b>How to run?</b> <br>
 1. Create an account on https://openweathermap.org/api (free version is enough) to get an API KEY for calls.
@@ -23,6 +28,7 @@ weather-api-token.token=YOUR_WEATHER_API_KEY
 
 <br>Example of proper configuration:
 ![UqJZ7xf](https://github.com/Salonce/WeatherAndClothes/assets/27849647/eb7f8780-b428-42cd-935a-ee69e50ec934)
+
 
 
 
