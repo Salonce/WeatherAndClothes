@@ -1,9 +1,6 @@
 package springTwo.example.springProject.Weather;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
-
 
 public class CityDTO {
     private String name;
@@ -62,10 +59,3 @@ public class CityDTO {
     }
 }
 
-class CityDTOList{
-    private List<CityDTO> cityDTOList;
-
-    public CityDTOList(){
-        cityDTOList = new ArrayList<>();
-    }
-}

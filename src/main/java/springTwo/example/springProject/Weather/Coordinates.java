@@ -3,15 +3,10 @@ package springTwo.example.springProject.Weather;
 class Coordinates {
     Coordinates() {
     }
-
-    ;
-
     Coordinates(String latitude, String longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
     }
-
-    ;
 
     private String latitude;
     private String longitude;

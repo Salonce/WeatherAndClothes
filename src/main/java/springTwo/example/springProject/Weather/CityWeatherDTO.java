@@ -1,11 +1,11 @@
 package springTwo.example.springProject.Weather;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
-import springTwo.example.springProject.TokenConfig;
-
 public class CityWeatherDTO {
+    CityWeatherDTO(WeatherDTO weatherDTO){
+        this.cityDTO = null;
+        this.weatherDTO = weatherDTO;
+    }
+
     CityWeatherDTO(CityDTO cityDTO, WeatherDTO weatherDTO){
         this.cityDTO = cityDTO;
         this.weatherDTO = weatherDTO;

@@ -7,6 +7,7 @@
 <body>
 
 <nav class="topnav mb-3" th:fragment="navbar">
+    <a th:class="${activePage == 'index' ? 'active' : ''}" href="/">Home</a>
     <a th:class="${activePage == 'item' ? 'active' : ''}" href="wardrobe">Wardrobe</a>
     <a th:class="${activePage == 'weather' ? 'active' : ''}" href="weather">Weather</a>
 </nav>

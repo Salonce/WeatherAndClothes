@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -34,48 +33,16 @@ public class WeatherController {
 
     @PostMapping(value="/weather", params = "latitude")
     String getPostWeather(@ModelAttribute("coordinates") Coordinates coordinates, Model model){
-        WeatherDTO weatherDTO = weatherService.getWeather(coordinates.getLatitude(), coordinates.getLongitude());
-        List<WeatherDTO> weatherDTOList = new ArrayList<>();
-        weatherDTOList.add(weatherDTO);
-        model.addAttribute("weath", weatherDTO);
-        model.addAttribute("weatherDTOList", weatherDTOList);
+        List<CityWeatherDTO> cityWeatherDTOList = weatherService.getCityWeatherDTOlist(coordinates.getLatitude(), coordinates.getLongitude());
+        model.addAttribute("cityWeatherDTOList", cityWeatherDTOList);
         return "weather";
     }
 
 
     @PostMapping(value="/weather", params = "cityName")
     String getPostWeather(@RequestParam("cityName") String cityName, Model model) {
-
-        List<CityWeatherDTO> cityWeatherDTOList = weatherService.getCityWeatherDTOlist(weatherService.getCityDTOlist(cityName));
-
-        //model.addAttribute("weath", weatherDTOList);
-
-
-        //model.addAttribute("latitude", coordinates.getLatitude());
-        //model.addAttribute("long", coordinates.getLongitude());
-        //model.addAttribute("temperature", weatherDTO.getMain().getTemp_max());
-        //model.addAttribute("pressure", weatherDTO.getMain().getPressure());
-        //model.addAttribute("humidity", weatherDTO.getMain().getHumidity());
-        //model.addAttribute("wind", weatherDTO.getWind().getSpeed());
-        //model.addAttribute("clouds", weatherDTO.getClouds().getAll());
-
+        List<CityWeatherDTO> cityWeatherDTOList = weatherService.getCityWeatherDTOlist(cityName);
+        model.addAttribute("cityWeatherDTOList", cityWeatherDTOList);
         return "weather";
     }
 }
-
-/*
-    @ResponseBody
-    WeatherDTO getWeather(){
-        return weatherService.getWeather();
-    }
-
-
-
-
-        //model.addAttribute("temperature", weatherDTO.getMain().getTemp_max());
-        //model.addAttribute("pressure", weatherDTO.getMain().getPressure());
-        //model.addAttribute("humidity", weatherDTO.getMain().getHumidity());
-        //model.addAttribute("wind", weatherDTO.getWind().getSpeed());
-        //model.addAttribute("clouds", weatherDTO.getClouds().getAll());
- */
-
