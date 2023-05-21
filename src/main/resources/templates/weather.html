@@ -22,7 +22,7 @@
     <div class="form-group row">
         <label for="latitude" class="col-sm-1 col-form-label">Latitude</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="latitude" aria-describedby="latitudeHelp" placeholder="Enter latitude" th:field="*{latitude}">
+            <input type="text" class="form-control" id="latitude" aria-describedby="latitudeHelp" placeholder="Enter latitude" th:field="*{latitude}" th:max="90">
             <small id="latitudeHelp" class="form-text text-muted">-90.0 to 90.0 values allowed</small>
         </div>
     </div>
