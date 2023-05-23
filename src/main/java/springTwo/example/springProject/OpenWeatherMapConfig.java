@@ -1,0 +1,40 @@
+package springTwo.example.springProject;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@ConfigurationProperties(prefix = "weather-api-token")
+public class OpenWeatherMapConfig {
+
+    private String token;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getByCityURL(String cityName){
+        StringBuilder resourceUrlBuilder = new StringBuilder();
+        resourceUrlBuilder.append("http://api.openweathermap.org/geo/1.0/direct?q=")
+                .append(cityName)
+                .append("&limit=5&appid=")
+                .append(token);
+        return resourceUrlBuilder.toString();
+    }
+
+    public String getByCoordinatesURL(String latitude, String longitude) {
+        StringBuilder resourceUrlBuilder = new StringBuilder();
+        resourceUrlBuilder.append("https://api.openweathermap.org/data/2.5/weather?lat=")
+                .append(latitude)
+                .append("&lon=")
+                .append(longitude)
+                .append("&units=metric")
+                .append("&appid=")
+                .append(token);
+        return resourceUrlBuilder.toString();
+    }
+}

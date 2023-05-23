@@ -8,7 +8,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import springTwo.example.springProject.TokenConfig;
+import springTwo.example.springProject.OpenWeatherMapConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,30 +16,27 @@ import java.util.List;
 @Service
 public class WeatherService {
 
-    private TokenConfig tokenConfig;
+    private OpenWeatherMapConfig openWeatherMapConfig;
 
     @Autowired
-    WeatherService(TokenConfig tokenConfig){
-        this.tokenConfig = tokenConfig;
+    WeatherService(OpenWeatherMapConfig openWeatherMapConfig){
+        this.openWeatherMapConfig = openWeatherMapConfig;
     }
 
     private WeatherDTO getWeatherDTO(String latitude, String longitude){
         RestTemplate restTemplate = new RestTemplate();
-        String resourceUrl = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&units=metric" + "&appid=" + tokenConfig.getToken();
-        ResponseEntity<WeatherDTO> response = restTemplate.getForEntity(resourceUrl, WeatherDTO.class);
-
+        ResponseEntity<WeatherDTO> response = restTemplate.getForEntity(openWeatherMapConfig.getByCoordinatesURL(latitude, longitude), WeatherDTO.class);
         return response.getBody();
     }
 
     private List<CityDTO> getCityDTOlist(String cityName){
-        String resourceUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=5&appid=" + tokenConfig.getToken();
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<List<CityDTO>> responseEntity = restTemplate.exchange(
-        resourceUrl,
-        HttpMethod.GET,
-        null,
-        new ParameterizedTypeReference<List<CityDTO>>() {}
-        );
+            openWeatherMapConfig.getByCityURL(cityName),
+            HttpMethod.GET,
+            null,
+            new ParameterizedTypeReference<List<CityDTO>>() {}
+            );
         return responseEntity.getBody();
     }
 
