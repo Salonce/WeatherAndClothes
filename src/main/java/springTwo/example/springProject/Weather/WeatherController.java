@@ -17,6 +17,7 @@ public class WeatherController {
     void addAttributes(Model model){
         model.addAttribute("coordinates", new Coordinates());
         model.addAttribute("cityName", new String());
+        model.addAttribute("activePage", "weather");
     }
 
     private WeatherService weatherService;
@@ -31,7 +32,7 @@ public class WeatherController {
         return "weather";
     }
 
-    @PostMapping(value="/weather", params = "latitude")
+    @GetMapping(value="/weather/coords")
     String getPostWeather(@ModelAttribute("coordinates") Coordinates coordinates, Model model){
         List<CityWeatherDTO> cityWeatherDTOList = weatherService.getCityWeatherDTOlist(coordinates.getLatitude(), coordinates.getLongitude());
         model.addAttribute("cityWeatherDTOList", cityWeatherDTOList);
@@ -39,7 +40,7 @@ public class WeatherController {
     }
 
 
-    @PostMapping(value="/weather", params = "cityName")
+    @GetMapping(value="/weather/city")
     String getPostWeather(@RequestParam("cityName") String cityName, Model model) {
         List<CityWeatherDTO> cityWeatherDTOList = weatherService.getCityWeatherDTOlist(cityName);
         model.addAttribute("cityWeatherDTOList", cityWeatherDTOList);

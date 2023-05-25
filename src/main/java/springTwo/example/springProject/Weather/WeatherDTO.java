@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 
-
 public class WeatherDTO implements Serializable {
     private Coord coord;
     private List<Weather> weather;

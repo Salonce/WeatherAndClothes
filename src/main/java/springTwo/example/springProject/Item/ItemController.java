@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/wardrobe")
 public class ItemController {
 
     private ItemService itemService;
@@ -19,24 +18,25 @@ public class ItemController {
     @ModelAttribute
     void addAttributes(Model model){
         model.addAttribute("itemToAdd", new Item());
-        model.addAttribute("itemIdToRemove", "");
-        model.addAttribute("activePage", "item");
+        model.addAttribute("activePage", "wardrobe");
     }
 
-    @GetMapping
-    public String get(@RequestParam(value="name", required = false) String name, Model model){
+    @GetMapping(value = "/wardrobe")
+    public String getWardrobe(Model model){
         model.addAttribute("itemList", itemService.getItemsList());
         return "wardrobe";
     }
 
-    @PostMapping(params = "name")
-    public String post(@ModelAttribute("itemToAdd") Item itemToAdd, Model model){
+
+    @PostMapping(value = "/wardrobe")
+    public String addItem(@ModelAttribute("itemToAdd") Item itemToAdd, Model model){
         itemService.saveItem(itemToAdd);
         model.addAttribute("itemList", itemService.getItemsList());
         return "wardrobe";
     }
-    @PostMapping(params = "itemId")
-    public String post(@RequestParam(value="itemId", required = true) String id, Model model){
+
+    @DeleteMapping(value = "/wardrobe/{id}")
+    public String deleteItem(@PathVariable String id, Model model){
         itemService.deleteItem(id);
         model.addAttribute("itemList", itemService.getItemsList());
         return "wardrobe";

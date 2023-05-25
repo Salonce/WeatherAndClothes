@@ -1,7 +1,5 @@
 package springTwo.example.springProject.Weather;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
-import jakarta.servlet.ServletOutputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
