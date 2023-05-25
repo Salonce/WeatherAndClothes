@@ -20,8 +20,6 @@ public class WeatherDTO implements Serializable {
     private String name;
     private int cod;
 
-    // getters and setters
-
     public Coord getCoord() {
         return coord;
     }
@@ -138,8 +136,6 @@ public class WeatherDTO implements Serializable {
         private double lon;
         private double lat;
 
-        // getters and setters
-
         public double getLon() {
             return lon;
         }
@@ -157,234 +153,221 @@ public class WeatherDTO implements Serializable {
         }
     }
 
-    public static class Weather {
-        private int id;
-        private String main;
-        private String description;
-        private String icon;
 
-        // getters and setters
+}
 
-        public int getId() {
-            return id;
-        }
+class Weather {
+    private int id;
+    private String main;
+    private String description;
+    private String icon;
 
-        public void setId(int id) {
-            this.id = id;
-        }
-
-        public String getMain() {
-            return main;
-        }
-
-        public void setMain(String main) {
-            this.main = main;
-        }
-
-        public String getDescription() {
-            return description;
-        }
-
-        public void setDescription(String description) {
-            this.description = description;
-        }
-
-        public String getIcon() {
-            return icon;
-        }
-
-        public void setIcon(String icon) {
-            this.icon = icon;
-        }
+    public int getId() {
+        return id;
     }
 
-    public static class Main {
-        private double temp;
-        private double feels_like;
-        private double temp_min;
-        private double temp_max;
-        private int pressure;
-        private int humidity;
-        private int sea_level;
-        private int grnd_level;
-
-        // getters and setters
-
-        public double getTemp() {
-            return temp;
-        }
-
-        public void setTemp(double temp) {
-            this.temp = temp;
-        }
-
-        public double getFeels_like() {
-            return feels_like;
-        }
-
-        public void setFeels_like(double feels_like) {
-            this.feels_like = feels_like;
-        }
-
-        public double getTemp_min() {
-            return temp_min;
-        }
-
-        public void setTemp_min(double temp_min) {
-            this.temp_min = temp_min;
-        }
-
-        public double getTemp_max() {
-            return temp_max;
-        }
-
-        public void setTemp_max(double temp_max) {
-            this.temp_max = temp_max;
-        }
-
-        public int getPressure() {
-            return pressure;
-        }
-
-        public void setPressure(int pressure) {
-            this.pressure = pressure;
-        }
-
-        public int getHumidity() {
-            return humidity;
-        }
-
-        public void setHumidity(int humidity) {
-            this.humidity = humidity;
-        }
-
-        public int getSea_level() {
-            return sea_level;
-        }
-
-        public void setSea_level(int sea_level) {
-            this.sea_level = sea_level;
-        }
-
-        public int getGrnd_level() {
-            return grnd_level;
-        }
-
-        public void setGrnd_level(int grnd_level) {
-            this.grnd_level = grnd_level;
-        }
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public static class Wind {
-        private double speed;
-        private int deg;
-        private double gust;
-
-        // getters and setters
-
-
-        public double getSpeed() {
-            return speed;
-        }
-
-        public void setSpeed(double speed) {
-            this.speed = speed;
-        }
-
-        public int getDeg() {
-            return deg;
-        }
-
-        public void setDeg(int deg) {
-            this.deg = deg;
-        }
-
-        public double getGust() {
-            return gust;
-        }
-
-        public void setGust(double gust) {
-            this.gust = gust;
-        }
+    public String getMain() {
+        return main;
     }
 
-    public static class Rain {
-        private double oneHour;
-
-        // getters and setters
-
-        public double getOneHour() {
-            return oneHour;
-        }
-
-        public void setOneHour(double oneHour) {
-            this.oneHour = oneHour;
-        }
+    public void setMain(String main) {
+        this.main = main;
     }
 
-    public static class Clouds {
-        private int all;
-
-        // getters and setters
-
-        public int getAll() {
-            return all;
-        }
-
-        public void setAll(int all) {
-            this.all = all;
-        }
+    public String getDescription() {
+        return description;
     }
 
-    public static class Sys {
-        private int type;
-        private int id;
-        private String country;
-        private long sunrise;
-        private long sunset;
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-        // getters and setters
+    public String getIcon() {
+        return icon;
+    }
 
-        public int getType() {
-            return type;
-        }
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+}
 
-        public void setType(int type) {
-            this.type = type;
-        }
+class Main {
+    private double temp;
+    private double feels_like;
+    private double temp_min;
+    private double temp_max;
+    private int pressure;
+    private int humidity;
+    private int sea_level;
+    private int grnd_level;
 
-        public int getId() {
-            return id;
-        }
+    public double getTemp() {
+        return temp;
+    }
 
-        public void setId(int id) {
-            this.id = id;
-        }
+    public void setTemp(double temp) {
+        this.temp = temp;
+    }
 
-        public String getCountry() {
-            return country;
-        }
+    public double getFeels_like() {
+        return feels_like;
+    }
 
-        public void setCountry(String country) {
-            this.country = country;
-        }
+    public void setFeels_like(double feels_like) {
+        this.feels_like = feels_like;
+    }
 
-        public long getSunrise() {
-            return sunrise;
-        }
+    public double getTemp_min() {
+        return temp_min;
+    }
 
-        public void setSunrise(long sunrise) {
-            this.sunrise = sunrise;
-        }
+    public void setTemp_min(double temp_min) {
+        this.temp_min = temp_min;
+    }
 
-        public long getSunset() {
-            return sunset;
-        }
+    public double getTemp_max() {
+        return temp_max;
+    }
 
-        public void setSunset(long sunset) {
-            this.sunset = sunset;
-        }
+    public void setTemp_max(double temp_max) {
+        this.temp_max = temp_max;
+    }
+
+    public int getPressure() {
+        return pressure;
+    }
+
+    public void setPressure(int pressure) {
+        this.pressure = pressure;
+    }
+
+    public int getHumidity() {
+        return humidity;
+    }
+
+    public void setHumidity(int humidity) {
+        this.humidity = humidity;
+    }
+
+    public int getSea_level() {
+        return sea_level;
+    }
+
+    public void setSea_level(int sea_level) {
+        this.sea_level = sea_level;
+    }
+
+    public int getGrnd_level() {
+        return grnd_level;
+    }
+
+    public void setGrnd_level(int grnd_level) {
+        this.grnd_level = grnd_level;
     }
 }
 
 
+class Rain {
+    private double oneHour;
+    public double getOneHour() {
+        return oneHour;
+    }
+
+    public void setOneHour(double oneHour) {
+        this.oneHour = oneHour;
+    }
+}
+
+class Clouds {
+    private int all;
+
+    public int getAll() {
+        return all;
+    }
+
+    public void setAll(int all) {
+        this.all = all;
+    }
+}
+
+class Wind {
+    private double speed;
+    private int deg;
+    private double gust;
+
+    public double getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
+
+    public int getDeg() {
+        return deg;
+    }
+
+    public void setDeg(int deg) {
+        this.deg = deg;
+    }
+
+    public double getGust() {
+        return gust;
+    }
+
+    public void setGust(double gust) {
+        this.gust = gust;
+    }
+}
+
+class Sys {
+    private int type;
+    private int id;
+    private String country;
+    private long sunrise;
+    private long sunset;
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public long getSunrise() {
+        return sunrise;
+    }
+
+    public void setSunrise(long sunrise) {
+        this.sunrise = sunrise;
+    }
+
+    public long getSunset() {
+        return sunset;
+    }
+
+    public void setSunset(long sunset) {
+        this.sunset = sunset;
+    }
+}
