@@ -6,18 +6,18 @@
 <body>
 <div th:replace="~{fragments :: navbar}"></div>
 
-<form method="get" th:action="@{/weather/coords}" th:object="${coordinates}" class="ms-3">
+<form method="get" th:action="@{/weather/coords}" class="ms-3">
     <div class="form-group row">
         <label for="latitude" class="col-sm-1 col-form-label">Latitude</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="latitude" aria-describedby="latitudeHelp" placeholder="Enter latitude" th:field="*{latitude}" th:max="90">
+            <input type="text" class="form-control" id="latitude" aria-describedby="latitudeHelp" placeholder="Enter latitude" th:name="latitude" th:max="90">
             <small id="latitudeHelp" class="form-text text-muted">-90.0 to 90.0 values allowed</small>
         </div>
     </div>
     <div class="form-group row">
         <label for="longitude" class="col-sm-1 col-form-label">Longitude</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="longitude" aria-describedby="longitudeHelp" placeholder="Enter longitude" th:field="*{longitude}">
+            <input type="text" class="form-control" id="longitude" aria-describedby="longitudeHelp" placeholder="Enter longitude" th:name="longitude">
             <small id="longitudeHelp" class="form-text text-muted">-180.0 to 180.0 values allowed</small>
         </div>
     </div>
