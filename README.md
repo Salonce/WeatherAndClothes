@@ -1,6 +1,5 @@
-# WeatherAndClothes v1.0
+# WeatherAndClothes
 Application let's us check the weather in specific city/under specific coordinates and allows us store items in a wardrobe.
-
 
 ![2Ltadu7](https://github.com/Salonce/WeatherAndClothes/assets/27849647/b6cec21b-384e-4040-a15a-d71dcf811bd2)
 ![adJInF9](https://github.com/Salonce/WeatherAndClothes/assets/27849647/b05f0507-b446-4035-ad84-f5f3e2aab81a)
