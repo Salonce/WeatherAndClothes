@@ -1,7 +1,9 @@
-package springTwo.example.springProject.Item;
+package springTwo.example.springProject.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import springTwo.example.springProject.repository.ItemRepository;
+import springTwo.example.springProject.entity.Item;
 
 import java.util.List;
 
@@ -15,15 +17,15 @@ public class ItemService {
         this.itemRepository = itemRepository;
     }
 
-    List<Item> getItemsList(){
+    public List<Item> getItemsList(){
         return itemRepository.findAll();
     }
 
-    void deleteItem(String id){
+    public void deleteItem(String id){
         itemRepository.deleteById(Long.parseLong(id));
     }
 
-    void saveItem(Item item){
+    public void saveItem(Item item){
         itemRepository.save(item);
     }
 }

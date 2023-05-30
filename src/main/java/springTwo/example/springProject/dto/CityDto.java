@@ -1,8 +1,8 @@
-package springTwo.example.springProject.Weather;
+package springTwo.example.springProject.dto;
 
 import java.util.Map;
 
-public class CityDTO {
+public class CityDto {
     private String name;
     private Map<String, String> localNames;
     private double lat;

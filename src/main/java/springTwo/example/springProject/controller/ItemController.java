@@ -1,9 +1,11 @@
-package springTwo.example.springProject.Item;
+package springTwo.example.springProject.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import springTwo.example.springProject.entity.Item;
+import springTwo.example.springProject.service.ItemService;
 
 @Controller
 public class ItemController {

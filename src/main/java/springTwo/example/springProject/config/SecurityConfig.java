@@ -1,4 +1,4 @@
-package springTwo.example.springProject;
+package springTwo.example.springProject.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -44,11 +44,3 @@ public class SecurityConfig {
 }
 
 
-@Controller
-class PrivateController {
-
-    @GetMapping(value = "/private")
-    public String getWardrobe(Model model){
-        return "private";
-    }
-}

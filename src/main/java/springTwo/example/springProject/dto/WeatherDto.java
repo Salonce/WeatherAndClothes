@@ -1,10 +1,10 @@
-package springTwo.example.springProject.Weather;
+package springTwo.example.springProject.dto;
 
 import java.io.Serializable;
 import java.util.List;
 
 
-public class WeatherDTO implements Serializable {
+public class WeatherDto implements Serializable {
     private Coord coord;
     private List<Weather> weather;
     private String base;

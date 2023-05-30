@@ -1,4 +1,4 @@
-package springTwo.example.springProject;
+package springTwo.example.springProject.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;

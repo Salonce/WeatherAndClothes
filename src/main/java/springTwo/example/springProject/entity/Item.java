@@ -1,4 +1,4 @@
-package springTwo.example.springProject.Item;
+package springTwo.example.springProject.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
