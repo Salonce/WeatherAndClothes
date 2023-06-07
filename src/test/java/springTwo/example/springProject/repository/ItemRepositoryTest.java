@@ -3,9 +3,9 @@ package springTwo.example.springProject.repository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.data.domain.Example;
 import springTwo.example.springProject.entity.Item;
+
+import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -25,11 +25,11 @@ public class ItemRepositoryTest {
         Item item = new Item();
         item.setName("lamp");
         itemRepository.save(item);
-
         //when
-        boolean expected = itemRepository.exists(Example.of(item));
+        Optional<Item> optionalItem = itemRepository.findItemByName("lamp");
 
         //then
-        assertThat(expected);
+        assertThat(optionalItem.isPresent()).isTrue();
     }
+
 }
