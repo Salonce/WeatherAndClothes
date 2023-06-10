@@ -1,11 +1,10 @@
 package springTwo.example.springProject.repository;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import springTwo.example.springProject.entity.Item;
-
-import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -19,17 +18,31 @@ public class ItemRepositoryTest {
         this.itemRepository = itemRepository;
     }
 
+    @AfterEach
+    void tearDown(){
+        itemRepository.deleteAll();
+    }
+
     @Test
-    void checkIfItemRepoWorks() {
+    void checkItemCreation() {
         //given
         Item item = new Item();
         item.setName("lamp");
         itemRepository.save(item);
+
         //when
-        Optional<Item> optionalItem = itemRepository.findItemByName("lamp");
+        boolean exists = itemRepository.existsByName("lamp");
+        int number = itemRepository.countByName("lamp");
 
         //then
-        assertThat(optionalItem.isPresent()).isTrue();
+        assertThat(exists).isTrue();
+        assertThat(number).isEqualTo(1L);
+    }
+
+    @Test
+    void checkItemExistence(){
+        boolean exists = itemRepository.existsByName("lamp");
+        assertThat(exists).isFalse();
     }
 
 }
