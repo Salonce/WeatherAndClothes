@@ -39,7 +39,7 @@ public class ItemController {
 
     @DeleteMapping(value = "/wardrobe/{id}")
     public String deleteItem(@PathVariable String id, Model model){
-        itemService.deleteItem(id);
+        itemService.deleteById(Long.parseLong(id));
         model.addAttribute("itemList", itemService.getItemsList());
         return "wardrobe";
     }

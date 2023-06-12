@@ -21,8 +21,8 @@ public class ItemService {
         return itemRepository.findAll();
     }
 
-    public void deleteItem(String id){
-        itemRepository.deleteById(Long.parseLong(id));
+    public void deleteById(Long id){
+        itemRepository.deleteById(id);
     }
 
     public void saveItem(Item item){
