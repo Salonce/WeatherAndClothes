@@ -9,22 +9,23 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
 
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .authorizeRequests(authorizeConfig -> {
-                    authorizeConfig.requestMatchers("/private").authenticated();
-                    authorizeConfig.requestMatchers("/wardrobe").authenticated();
-                    authorizeConfig.anyRequest().permitAll();
+                .authorizeHttpRequests(authorizeConfig -> {
+                    authorizeConfig.requestMatchers("/").permitAll();
+                    authorizeConfig.requestMatchers("/home").permitAll();
+                    authorizeConfig.requestMatchers("/weather").permitAll();
+                    authorizeConfig.requestMatchers("/weather/coords").permitAll();
+                    authorizeConfig.requestMatchers("/weather/city").permitAll();
+                    authorizeConfig.requestMatchers("/css/**").permitAll();
+                    authorizeConfig.requestMatchers("/images/**").permitAll();
+                    authorizeConfig.anyRequest().authenticated();
                     })
                 .formLogin(Customizer.withDefaults())
                 .build();
@@ -41,4 +42,3 @@ public class SecurityConfig {
         );
     }
 }
-

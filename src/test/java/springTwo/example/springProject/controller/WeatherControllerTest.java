@@ -64,10 +64,4 @@ public class WeatherControllerTest {
     @Test
     void testGetPostWeather() {
     }
-
-    @Test
-    void greeting() throws Exception {
-        RequestBuilder request = MockMvcRequestBuilders.get("http://127.0.0.1:8080/greeting");
-        this.mockMvc.perform(request).andDo(print()).andExpect(status().isOk());
-    }
 }

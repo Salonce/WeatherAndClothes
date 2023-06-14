@@ -43,9 +43,4 @@ public class WeatherController {
         model.addAttribute("cityWeatherDTOList", cityWeatherDTOList);
         return "weather";
     }
-
-    @RequestMapping("/greeting")
-    public @ResponseBody String greeting() {
-        return "dasd";
-    }
 }
