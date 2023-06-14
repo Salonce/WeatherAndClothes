@@ -1,10 +1,10 @@
-package springTwo.example.springProject.repository;
+package springTwo.example.springProject.repositories;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import springTwo.example.springProject.entity.Item;
+import springTwo.example.springProject.entities.Item;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 

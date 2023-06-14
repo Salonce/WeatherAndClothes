@@ -36,7 +36,7 @@ public class SecurityConfig {
         return new InMemoryUserDetailsManager(
                 User.builder()
                         .username("user")
-                        .password("{noop}password")
+                        .password("{bcrypt}$2a$10$X5wFBtLrL/kHcmrOGGTrGufsBX8CJ0WpQpF3pgeuxBB/H73BK1DW6")
                         .authorities("ROLE_user")
                         .build()
         );

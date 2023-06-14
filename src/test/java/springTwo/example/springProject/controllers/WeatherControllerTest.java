@@ -1,4 +1,4 @@
-package springTwo.example.springProject.controller;
+package springTwo.example.springProject.controllers;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -9,7 +9,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import springTwo.example.springProject.service.weather.WeatherService;
+import springTwo.example.springProject.services.WeatherService;
 
 import java.util.List;
 

@@ -1,11 +1,11 @@
-package springTwo.example.springProject.controller;
+package springTwo.example.springProject.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import springTwo.example.springProject.service.weather.Weather;
-import springTwo.example.springProject.service.weather.WeatherService;
+import springTwo.example.springProject.models.Weather;
+import springTwo.example.springProject.services.WeatherService;
 
 import java.util.List;
 

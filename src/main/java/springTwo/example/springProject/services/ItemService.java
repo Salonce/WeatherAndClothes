@@ -1,9 +1,9 @@
-package springTwo.example.springProject.service;
+package springTwo.example.springProject.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import springTwo.example.springProject.repository.ItemRepository;
-import springTwo.example.springProject.entity.Item;
+import springTwo.example.springProject.repositories.ItemRepository;
+import springTwo.example.springProject.entities.Item;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
-package springTwo.example.springProject.service.weather;
+package springTwo.example.springProject.models;
 
-import springTwo.example.springProject.dto.City;
-import springTwo.example.springProject.dto.Location;
+import springTwo.example.springProject.dtos.City;
+import springTwo.example.springProject.dtos.Location;
 
 public class Weather {
     public Weather(Location location) {

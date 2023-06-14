@@ -1,4 +1,4 @@
-package springTwo.example.springProject.dto;
+package springTwo.example.springProject.dtos;
 
 import java.util.Map;
 
