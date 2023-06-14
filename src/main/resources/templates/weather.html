@@ -68,47 +68,47 @@
     <tr th:each="weath : ${cityWeatherDTOList}">
         <td>
             <div>
-                <p th:text="${weath.weatherDTO.coord.lat}"></p>
+                <p th:text="${weath.location.coord.lat}"></p>
             </div>
         </td>
         <td>
             <div>
-                <p th:text="${weath.weatherDTO.coord.lon}"></p>
+                <p th:text="${weath.location.coord.lon}"></p>
             </div>
         </td>
         <td>
             <div>
-                <p th:text="${weath.weatherDTO.name}"></p>
+                <p th:text="${weath.location.name}"></p>
             </div>
         </td>
         <td>
             <div>
-                <p th:text="${weath.weatherDTO.sys.country}"></p>
+                <p th:text="${weath.location.sys.country}"></p>
             </div>
         </td>
         <td>
             <div>
-                <p th:text="${weath.weatherDTO.main.temp_max + ' C'}"></p>
+                <p th:text="${weath.location.main.temp_max + ' C'}"></p>
             </div>
         </td>
         <td>
             <div>
-                <p th:text="${weath.weatherDTO.main.pressure + ' bars'}"></p>
+                <p th:text="${weath.location.main.pressure + ' bars'}"></p>
             </div>
         </td>
         <td>
             <div>
-                <p th:text="${weath.weatherDTO.main.humidity + '%'}"></p>
+                <p th:text="${weath.location.main.humidity + '%'}"></p>
             </div>
         </td>
         <td>
             <div>
-                <p th:text="${weath.weatherDTO.wind.speed + ' km/h'}"></p>
+                <p th:text="${weath.location.wind.speed + ' km/h'}"></p>
             </div>
         </td>
         <td>
             <div>
-                <p th:text="${weath.weatherDTO.clouds.all + '%'}"></p>
+                <p th:text="${weath.location.clouds.all + '%'}"></p>
             </div>
         </td>
     </tr>

@@ -2,7 +2,7 @@ package springTwo.example.springProject.dto;
 
 import java.util.Map;
 
-public class CityDto {
+public class City {
     private String name;
     private Map<String, String> localNames;
     private double lat;

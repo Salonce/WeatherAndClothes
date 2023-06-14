@@ -7,8 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import springTwo.example.springProject.config.OpenWeatherMapConfig;
-import springTwo.example.springProject.dto.CityDto;
-import springTwo.example.springProject.dto.WeatherDto;
+import springTwo.example.springProject.dto.City;
+import springTwo.example.springProject.dto.Location;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,34 +23,36 @@ public class WeatherService {
         this.openWeatherMapConfig = openWeatherMapConfig;
     }
 
-    private WeatherDto getWeatherDTO(String latitude, String longitude){
+    private Location getLocation(String latitude, String longitude){
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<WeatherDto> response = restTemplate.getForEntity(openWeatherMapConfig.getByCoordinatesURL(latitude, longitude), WeatherDto.class);
+        ResponseEntity<Location> response = restTemplate.getForEntity(openWeatherMapConfig.getByCoordinatesURL(latitude, longitude), Location.class);
         return response.getBody();
     }
 
-    private List<CityDto> getCityDTOlist(String cityName){
+    private List<City> getCityList(String cityName){
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<List<CityDto>> responseEntity = restTemplate.exchange(
+        ResponseEntity<List<City>> responseEntity = restTemplate.exchange(
             openWeatherMapConfig.getByCityURL(cityName),
             HttpMethod.GET,
             null,
-            new ParameterizedTypeReference<List<CityDto>>() {}
+            new ParameterizedTypeReference<List<City>>() {}
             );
         return responseEntity.getBody();
     }
 
-    public List<CityWeather> getCityWeatherDTOlist(String cityName){
-        List<CityWeather> cityWeatherDTOlist = new ArrayList<>();
-        for (CityDto cityDTO : getCityDTOlist(cityName)){
-            cityWeatherDTOlist.add(new CityWeather(cityDTO, getWeatherDTO(Double.toString(cityDTO.getLat()), Double.toString(cityDTO.getLon()))));
+    public List<Weather> getWeatherList(String cityName){
+        List<Weather> weatherList = new ArrayList<>();
+        for (City city : getCityList(cityName)){
+            Weather weather = new Weather(city, getLocation(Double.toString(city.getLat()), Double.toString(city.getLon())));
+            weatherList.add(weather);
         }
-        return cityWeatherDTOlist;
+        return weatherList;
     }
 
-    public List<CityWeather> getCityWeatherDTOlist(String latitude, String longitude){
-        List<CityWeather> cityWeatherlist = new ArrayList<>();
-        cityWeatherlist.add(new CityWeather(getWeatherDTO(latitude, longitude)));
+    public List<Weather> getWeatherList(String latitude, String longitude){
+        List<Weather> cityWeatherlist = new ArrayList<>();
+        Weather weather = new Weather(getLocation(latitude, longitude));
+        cityWeatherlist.add(weather);
         return cityWeatherlist;
     }
 }
