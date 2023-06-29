@@ -14,23 +14,29 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests(authorizeConfig -> {
                     authorizeConfig.requestMatchers("/").permitAll();
+                    authorizeConfig.requestMatchers("/error").permitAll();
                     authorizeConfig.requestMatchers("/home").permitAll();
                     authorizeConfig.requestMatchers("/weather").permitAll();
                     authorizeConfig.requestMatchers("/weather/coords").permitAll();
                     authorizeConfig.requestMatchers("/weather/city").permitAll();
+                    authorizeConfig.requestMatchers("/register").permitAll();
+                    authorizeConfig.requestMatchers("/authenticate").permitAll();
                     authorizeConfig.requestMatchers("/css/**").permitAll();
                     authorizeConfig.requestMatchers("/images/**").permitAll();
                     authorizeConfig.anyRequest().authenticated();
-                    })
+                })
+                .oauth2Login(Customizer.withDefaults())
                 .formLogin(Customizer.withDefaults())
+
                 .build();
     }
-
+/*
     @Bean
     public UserDetailsService userDetailsService(){
         return new InMemoryUserDetailsManager(
@@ -41,4 +47,5 @@ public class SecurityConfig {
                         .build()
         );
     }
+*/
 }

@@ -14,7 +14,6 @@ import springTwo.example.springProject.services.WeatherService;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(controllers = WeatherController.class, excludeAutoConfiguration = {SecurityAutoConfiguration.class})

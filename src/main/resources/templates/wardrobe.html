@@ -5,31 +5,31 @@
 <body>
 <div th:replace="~{fragments :: navbar}"></div>
 
-<form method="post" th:action="@{/wardrobe}" th:object="${itemToAdd}" class="ms-3  w-75">
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <button class="btn btn-outline-secondary" type="submit">Add item</button>
-    </div>
-    <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1" th:field="*{name}">
-  </div>
+<p th:text="${'Hello, ' + userId}"></p>
 
-</form>
-
+<a class="btn btn-primary" th:href="@{/wardrobe/add}" role="button">Add item</a>
 
 <table class="table ms-3 w-75">
   <thead>
   <tr>
     <th>NO.</th>
-    <th>ITEM</th>
+    <th>Item</th>
+    <th>Weight </th>
+    <th> </th>
     <th> </th>
   </tr>
   </thead>
   <tbody>
-  <tr th:each="oneItem, iStat : ${itemList}">
+  <tr th:each="item, iStat : ${itemList}">
     <td th:text="${iStat.index + 1}" />
-    <td th:text="${oneItem.name}" />
+    <td th:text="${item.name}" />
+    <td th:text="${item.weight}" />
     <td>
-      <form th:action="@{/wardrobe/{id}(id = ${oneItem.id})}" th:method="delete">
+      <a class="btn btn-secondary" th:href="@{/wardrobe/update/{itemd}(itemd=${item.id})}" role="button" th:method="get">Update item</a>
+    </td>
+    <!--need to protect {id} updates and deletes urls from being accessed by people not having permissions to delete others' items -->
+    <td>
+      <form th:action="@{/wardrobe/{id}(id = ${item.id})}" th:method="delete">
         <button name="itemId" th:type="submit" class="btn btn-danger">Remove item</button>
       </form>
     </td>

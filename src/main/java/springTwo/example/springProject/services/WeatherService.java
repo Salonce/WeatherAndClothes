@@ -1,6 +1,6 @@
 package springTwo.example.springProject.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import springTwo.example.springProject.dtos.City;
 import springTwo.example.springProject.dtos.Location;
@@ -10,14 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class WeatherService {
 
-    @Autowired
-    WeatherService(WeatherAPIService weatherAPIService){
-        this.weatherAPIService = weatherAPIService;
-    }
-
-    private WeatherAPIService weatherAPIService;
+    private final WeatherAPIService weatherAPIService;
 
     public List<Weather> getWeatherList(String cityName){
         List<Weather> weatherList = new ArrayList<>();

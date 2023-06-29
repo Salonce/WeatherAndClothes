@@ -1,6 +1,6 @@
 package springTwo.example.springProject.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -13,14 +13,10 @@ import springTwo.example.springProject.dtos.Location;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class WeatherAPIService {
 
-    private OpenWeatherMapConfig openWeatherMapConfig;
-
-    @Autowired
-    WeatherAPIService(OpenWeatherMapConfig openWeatherMapConfig){
-        this.openWeatherMapConfig = openWeatherMapConfig;
-    }
+    private final OpenWeatherMapConfig openWeatherMapConfig;
 
     public Location requestLocation(String latitude, String longitude){
         RestTemplate restTemplate = new RestTemplate();

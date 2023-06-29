@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: headers}"></head>
+
+<body>
+<div th:replace="~{fragments :: navbar}"></div>
+
+<form th:method="put" th:action="@{/wardrobe}" th:object="${item}" >
+    <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" th:placeholder="*{name}" th:field="*{name}">
+    </div>
+    <div class="mb-3">
+        <label for="weight" class="form-label">Weight</label>
+        <input type="text" class="form-control" id="weight" th:placeholder="*{weight}" th:field="*{weight}">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+</body>
+</html>

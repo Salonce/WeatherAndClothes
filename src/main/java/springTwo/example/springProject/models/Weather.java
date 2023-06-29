@@ -1,8 +1,11 @@
 package springTwo.example.springProject.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import springTwo.example.springProject.dtos.City;
 import springTwo.example.springProject.dtos.Location;
 
+@Data
 public class Weather {
     public Weather(Location location) {
         this.city = null;
@@ -16,20 +19,4 @@ public class Weather {
 
     private City city;
     private Location location;
-
-    public City getCity() {
-        return city;
-    }
-
-    public void setCity(City city) {
-        this.city = city;
-    }
-
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
 }

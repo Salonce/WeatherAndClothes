@@ -1,1 +1,0 @@
-weatherAPI_token: e8ceae0a7335f1192e5357b18aae8639
