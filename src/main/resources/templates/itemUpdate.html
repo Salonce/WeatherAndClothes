@@ -5,7 +5,7 @@
 <body>
 <div th:replace="~{fragments :: navbar}"></div>
 
-<form th:method="put" th:action="@{/wardrobe}" th:object="${item}" >
+<form th:method="patch" th:action="@{/wardrobe/{itemid}(itemid=${item.id})}" th:object="${item}" >
     <div class="mb-3">
         <label for="name" class="form-label">Name</label>
         <input type="text" class="form-control" id="name" th:placeholder="*{name}" th:field="*{name}">

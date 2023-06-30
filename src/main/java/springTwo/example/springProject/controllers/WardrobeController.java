@@ -54,18 +54,19 @@ public class WardrobeController {
         return "error";
     }
 
-/*
-    @PutMapping(value = "/wardrobe/{id}")
-    public String updateItem(@PathVariable String id, Model model, Authentication authentication){
+
+    @PatchMapping(value = "/wardrobe/{id}")
+    public String updateItem(@PathVariable String id, @ModelAttribute("item") Item item, Model model, Authentication authentication){
         String userId = authenticationService.getUserId(authentication);
         if (itemService.itemExistsByBothIds(Long.parseLong(id), userId)){
-            Item item = itemService.getItemById(Long.parseLong(id));
-            model.addAttribute("item", itemService.getItemById(Long.parseLong(id)));
+            System.out.println("INSIDE");
+            itemService.updateItem(Long.parseLong(id), item.getName(), item.getWeight());
+            model.addAttribute("itemList", itemService.getItemsList(userId));
             return "wardrobe";
         }
         return "error";
     }
-*/
+
 
     @DeleteMapping(value = "/wardrobe/{id}")
     public String deleteItem(@PathVariable String id, Model model, Authentication authentication){

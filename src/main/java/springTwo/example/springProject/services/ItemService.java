@@ -3,6 +3,7 @@ package springTwo.example.springProject.services;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import springTwo.example.springProject.repositories.ItemRepository;
 import springTwo.example.springProject.entities.Item;
 
@@ -25,6 +26,9 @@ public class ItemService {
     }
 
     public Item getItemById(Long id) { return itemRepository.getReferenceById(id);}
+
+    @Transactional
+    public void updateItem(Long id, String name, String weight){ itemRepository.updateItem(id, name, weight);}
 
     public void deleteById(Long id){
         itemRepository.deleteById(id);
