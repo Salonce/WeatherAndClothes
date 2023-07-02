@@ -23,61 +23,49 @@ public class WardrobeController {
     }
 
     @GetMapping(value = "/wardrobe")
-    public String getWardrobe(Model model, Authentication authentication){
-        String userId = authenticationService.getUserId(authentication);
-        model.addAttribute("itemList", itemService.getItemsList(userId));
+    public String getWardrobe(@RequestParam(value = "wardrobeSort", required = false) String sortMethod, Model model, Authentication authentication){
+        model.addAttribute("itemList", itemService.getItemsList(authentication, sortMethod));
         return "wardrobe";
     }
 
     @GetMapping(value = "/wardrobe/add")
-    public String addItem(Model model, Authentication authentication){
+    public String addItemForm(Model model, Authentication authentication){
         model.addAttribute("item", new Item());
         return "itemAdd";
     }
 
     @PostMapping(value = "/wardrobe")
     public String addItem(@ModelAttribute("item") Item item, Model model, Authentication authentication){
-        String userId = authenticationService.getUserId(authentication);
-        item.setUserId(userId);
-        itemService.saveItem(item);
-        model.addAttribute("itemList", itemService.getItemsList(userId));
+        itemService.newItem(authentication, item);
+        model.addAttribute("itemList", itemService.getItemsListByName(authentication));
         return "wardrobe";
     }
 
     @GetMapping(value = "/wardrobe/update/{id}")
-    public String updateItemForm(@PathVariable String id, Model model, Authentication authentication){
-        String userId = authenticationService.getUserId(authentication);
-        if (itemService.itemExistsByBothIds(Long.parseLong(id), userId)){
-            model.addAttribute("item", itemService.getItemById(Long.parseLong(id)));
+    public String updateItemForm(@PathVariable("id") String itemId, Model model, Authentication authentication){
+        if (itemService.userHasItem(authentication, itemId)){
+            model.addAttribute("item", itemService.getItemById(itemId));
             return "itemUpdate";
         }
         return "error";
     }
 
-
     @PatchMapping(value = "/wardrobe/{id}")
-    public String updateItem(@PathVariable String id, @ModelAttribute("item") Item item, Model model, Authentication authentication){
-        String userId = authenticationService.getUserId(authentication);
-        if (itemService.itemExistsByBothIds(Long.parseLong(id), userId)){
-            System.out.println("INSIDE");
-            itemService.updateItem(Long.parseLong(id), item.getName(), item.getWeight());
-            model.addAttribute("itemList", itemService.getItemsList(userId));
+    public String updateItem(@PathVariable("id") String itemId, @ModelAttribute("item") Item item, Model model, Authentication authentication){
+        if (itemService.userHasItem(authentication, itemId)){
+            itemService.updateItem(itemId, item);
+            model.addAttribute("itemList", itemService.getItemsListByName(authentication));
             return "wardrobe";
         }
         return "error";
     }
-
 
     @DeleteMapping(value = "/wardrobe/{id}")
-    public String deleteItem(@PathVariable String id, Model model, Authentication authentication){
-        String userId = authenticationService.getUserId(authentication);
-        if (itemService.itemExistsByBothIds(Long.parseLong(id), userId)){
-            itemService.deleteById(Long.parseLong(id));
-            model.addAttribute("itemList", itemService.getItemsList(userId));
+    public String deleteItem(@PathVariable("id") String itemId, Model model, Authentication authentication){
+        if (itemService.deleteItem(authentication, itemId)){
+            model.addAttribute("itemList", itemService.getItemsListByName(authentication));
             return "wardrobe";
         }
         return "error";
     }
-
-
 }

@@ -18,10 +18,10 @@ class ItemServiceTest {
     private ItemService itemService;
     @Mock private ItemRepository itemRepository;
 
-    @BeforeEach
-    void setUp() {
-        itemService = new ItemService(itemRepository);
-    }
+    //@BeforeEach
+    //void setUp() {
+    //    itemService = new ItemService(itemRepository);
+    //}
 
     @Test
     void getItemsList() {

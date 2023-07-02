@@ -9,6 +9,16 @@
 
 <a class="btn btn-primary" th:href="@{/wardrobe/add}" role="button">Add item</a>
 
+<form th:action="@{/wardrobe}" method="get">
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Sort by</button>
+    <ul class="dropdown-menu">
+      <li><button class="dropdown-item" type="submit" th:name="wardrobeSort" th:value="byName">Name</button></li>
+      <li><button class="dropdown-item" type="submit" th:name="wardrobeSort" th:value="byWeight">Weight</button></li>
+    </ul>
+  </div>
+</form>
+
 <table class="table ms-3 w-75">
   <thead>
   <tr>
@@ -19,6 +29,7 @@
     <th> </th>
   </tr>
   </thead>
+
   <tbody>
   <tr th:each="item, iStat : ${itemList}">
     <td th:text="${iStat.index + 1}" />
@@ -36,6 +47,8 @@
   </tr>
   </tbody>
 </table>
+
+<div th:replace="~{fragments :: bootstrapJS}"></div>
 
 </body>
 </html>
