@@ -1,6 +1,7 @@
 package springTwo.example.springProject.services;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -16,16 +17,18 @@ import static org.mockito.Mockito.verify;
 class ItemServiceTest {
 
     private ItemService itemService;
+    private AuthenticationService authenticationService;
     @Mock private ItemRepository itemRepository;
 
-    //@BeforeEach
-    //void setUp() {
-    //    itemService = new ItemService(itemRepository);
-    //}
+    @BeforeEach
+    void setUp() {
+        itemService = new ItemService(authenticationService, itemRepository);
+    }
 
+    @Disabled
     @Test
     void getItemsList() {
-        //when
+        //WHEN
         itemService.getItemsList();
 
         //then

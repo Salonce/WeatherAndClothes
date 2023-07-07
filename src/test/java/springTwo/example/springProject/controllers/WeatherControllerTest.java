@@ -3,20 +3,22 @@ package springTwo.example.springProject.controllers;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import springTwo.example.springProject.config.SecurityConfig;
 import springTwo.example.springProject.services.WeatherService;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(controllers = WeatherController.class, excludeAutoConfiguration = {SecurityAutoConfiguration.class})
+@WebMvcTest(controllers = WeatherController.class)
+@Import(SecurityConfig.class)
 public class WeatherControllerTest {
 
     @MockBean
@@ -25,15 +27,13 @@ public class WeatherControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @Disabled
-    @Test
-    void addAttributes() {
-    }
 
     @Test
     void testGetWeatherSite() throws Exception {
-        // THEN
-        RequestBuilder request = MockMvcRequestBuilders.get("/weather");
+        // GIVEN
+        RequestBuilder request = get("/weather");
+
+        // WHEN THEN
         mockMvc.perform(request)
                 .andExpect(status().isOk())
                 .andExpect(view().name("weather"))
@@ -43,7 +43,10 @@ public class WeatherControllerTest {
     }
     @Test
     void getPostWeather() throws Exception {
-        RequestBuilder request = MockMvcRequestBuilders.get("/weather/coords?latitude=31&longitude=42");
+        // GIVEN
+        RequestBuilder request = get("/weather/coords?latitude=31&longitude=42");
+
+        // WHEN THEN
         Object obj = mockMvc.perform(request)
                 .andExpect(status().isOk())
                 .andExpect(view().name("weather"))
@@ -61,6 +64,22 @@ public class WeatherControllerTest {
 
     @Disabled
     @Test
+    void addAttributes() {
+
+    }
+
+    @Disabled
+    @Test
+    void getWeatherSite() {
+    }
+
+    @Disabled
+    @Test
     void testGetPostWeather() {
+    }
+
+    @Disabled
+    @Test
+    void testGetPostWeather1() {
     }
 }

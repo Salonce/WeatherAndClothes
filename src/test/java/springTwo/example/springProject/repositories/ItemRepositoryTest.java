@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import springTwo.example.springProject.entities.Item;
 
+import java.math.BigDecimal;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @DataJpaTest
@@ -25,22 +27,24 @@ public class ItemRepositoryTest {
 
     @Test
     void checkItemCreation() {
-        //given
+        //GIVEN
         Item item = new Item();
         item.setName("lamp");
+        item.setUserId("userIdTest");
+        item.setWeight(new BigDecimal(10));
         itemRepository.save(item);
 
-        //when
+        //WHEN
         boolean exists = itemRepository.existsByName("lamp");
         int number = itemRepository.countByName("lamp");
 
-        //then
+        //THEN
         assertThat(exists).isTrue();
         assertThat(number).isEqualTo(1L);
     }
 
     @Test
-    void checkItemExistence(){
+    void checkItemNonExistence(){
         boolean exists = itemRepository.existsByName("lamp");
         assertThat(exists).isFalse();
     }

@@ -2,12 +2,15 @@ package springTwo.example.springProject.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import springTwo.example.springProject.entities.Item;
 
 import java.util.List;
 
 @Repository
 public interface ItemRepository extends JpaRepository<Item, Long> {
+
+    Item getItemById(Long id);
 
     Boolean existsByIdAndUserId(Long id, String userId);
 
@@ -17,6 +20,7 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
     Boolean existsByName(String name);
     Integer countByName(String name);
 
+    @Transactional
     Integer deleteByIdAndUserId(Long id, String userId);
     /*
     DEPRECATED

@@ -1,10 +1,10 @@
 package springTwo.example.springProject.entities;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.*;
+import lombok.*;
+
+import java.math.BigDecimal;
 
 @Data
 @NoArgsConstructor
@@ -18,6 +18,11 @@ public class Item {
 
     private String userId;
 
+    @Size(min = 2, max = 30)
     private String name;
-    private String weight;
+
+    @NotNull
+    @Min(0)
+    @Max(1000)
+    private BigDecimal weight;
 }

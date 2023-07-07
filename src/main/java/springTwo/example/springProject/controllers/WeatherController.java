@@ -28,14 +28,14 @@ public class WeatherController {
     }
 
     @GetMapping(value="/weather/coords")
-    public String getPostWeather(@RequestParam("latitude") String latitude, @RequestParam("longitude") String longitude,  Model model){
+    public String getWeatherByCoords(@RequestParam("latitude") String latitude, @RequestParam("longitude") String longitude,  Model model){
         List<Weather> cityWeatherDTOList = weatherService.getWeatherList(latitude, longitude);
         model.addAttribute("cityWeatherDTOList", cityWeatherDTOList);
         return "weather";
     }
 
     @GetMapping(value="/weather/city")
-    public String getPostWeather(@RequestParam("cityName") String cityName, Model model) {
+    public String getWeatherByCityName(@RequestParam("cityName") String cityName, Model model) {
         List<Weather> cityWeatherDTOList = weatherService.getWeatherList(cityName);
         model.addAttribute("cityWeatherDTOList", cityWeatherDTOList);
         return "weather";

@@ -4,9 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import springTwo.example.springProject.repositories.ItemRepository;
 import springTwo.example.springProject.entities.Item;
 
@@ -17,7 +14,6 @@ import java.util.List;
 public class ItemService {
 
     private final AuthenticationService authenticationService;
-
     private final ItemRepository itemRepository;
 
     public List<Item> getItemsList(){
@@ -40,15 +36,23 @@ public class ItemService {
         return itemRepository.getReferenceById(parseIdToLong(id));
     }
 
-    public Boolean userHasItem(Authentication authentication, String id){
+
+    public Boolean userHasItem(Authentication authentication, String itemId){
         String userId = getUserId(authentication);
-        return itemRepository.existsByIdAndUserId(parseIdToLong(id), userId);
+        return itemRepository.existsByIdAndUserId(parseIdToLong(itemId), userId);
     }
 
-
     @Transactional
-    public void updateItem(String id, Item updatedItem){
-        Item item = itemRepository.getReferenceById(parseIdToLong(id));
+    public Boolean updateItem(Authentication authentication, String itemId, Item item) {
+        if (userHasItem(authentication, itemId)) {
+            updateItemz(itemId, item);
+            return true;
+        }
+        return false;
+    }
+
+    public void updateItemz(String id, Item updatedItem){
+        Item item = itemRepository.getItemById(parseIdToLong(id));
         item.setName(updatedItem.getName());
         item.setWeight(updatedItem.getWeight());
     }
@@ -59,7 +63,6 @@ public class ItemService {
         saveItem(item);
     }
 
-    @Transactional
     public Boolean deleteItem(Authentication authentication, String itemId){
         Long id = parseIdToLong(itemId);
         String userId = getUserId(authentication);
@@ -71,16 +74,9 @@ public class ItemService {
         itemRepository.deleteById(id);
     }
 
-    public void deleteById(String id){
-        Long idLong = parseIdToLong(id);
-        itemRepository.deleteById(idLong);
-    }
-
     public void saveItem(Item item){
         itemRepository.save(item);
     }
-
-
 
 
     //PRIVATE
@@ -114,6 +110,11 @@ public class ItemService {
 
     public Boolean itemExistsByBothIds(Long id, String userId){
         return itemRepository.itemExistsByBothIds(id, userId);
+    }
+
+    public void deleteById(String id){
+        Long idLong = parseIdToLong(id);
+        itemRepository.deleteById(idLong);
     }
      */
 }
