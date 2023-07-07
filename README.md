@@ -1,32 +1,41 @@
 # WeatherAndClothes
-Application let's us check the weather in specific city/under specific coordinates and allows us store items in a wardrobe.
 
-![2Ltadu7](https://github.com/Salonce/WeatherAndClothes/assets/27849647/b6cec21b-384e-4040-a15a-d71dcf811bd2)
-![adJInF9](https://github.com/Salonce/WeatherAndClothes/assets/27849647/b05f0507-b446-4035-ad84-f5f3e2aab81a)
+Website allowing users to access and manage their
+private virtual wardrobes. Additionally, it offers a way
+to check weather in specific places by using an
+external API. Includes testing and OAuth2.
+Built in accordance to REST principles.
 
-<b> About the project: </b>
-- Uses Java with Spring Framework, Tomcat Server
-- Frontend: HTML, Thymeleaf, Bootstrap 
-- MySQL database (modifiable) with JPA and HIBERNATE
+<b> Project involves the use of: </b><br>
+<br>- Java 17
+<br>- Spring, Spring Boot
+<br>- HTML, Bootstrap, Thymeleaf
+<br>- JPQL, Hibernate, MySQL
+<br>- JUnit, Mockito, AssertJ
 
 
 <b>How to run?</b> <br>
-1. Create an account on https://openweathermap.org/api (free version is enough) to get an API KEY for calls.
-2. Create an "application.properties" file under "src/main/resources/application.properties" where you configure the database connection and add API KEY from the website: <br>
-
+1. You will need an account on https://openweathermap.org/api (free version is enough) to get an API KEY for calls to properly configure the application in the fourth step.
+2. You will also need a google account to create CLIENT ID and CLIENT SECRET for OAuth2 (if you don't know how, there are instructions on the internet, for example here: https://developers.google.com/workspace/guides/create-credentials).
+3. Create an _"application.properties"_ under the path <i>"src/main/resources/application.properties"</i>.
+4. In the _"application.properties"_ file, write the following to set up your database, external API and OAuth2 Security:
 <br>
-spring.jpa.hibernate.ddl-auto=update <br>
-spring.datasource.url=jdbc:mysql://${MYSQL_HOST:localhost}:3306/DATABASENAME  <br>
-spring.datasource.username=USERNAME <br>
-spring.datasource.password=PASSWORD <br>
-spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver <br>
-#spring.jpa.show-sql: true <br>
 <br>
-#Simple properties <br>
-weather-api-token.token=YOUR_WEATHER_API_KEY
+<br>spring.jpa.hibernate.ddl-auto=update
+<br>spring.datasource.url=jdbc:mysql://${MYSQL_HOST:localhost}:3306/**_DATABASE_NAME_**
+<br>spring.datasource.username=**_USERNAME_** 
+<br>spring.datasource.password=**_PASSWORD_** 
+<br>spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver 
+<br>
+<br>#WeatherAPI
+<br>weather-api-token.token=**_YOUR_WEATHER_API_KEY_**
+<br>
+<br>#Security
+<br>spring.security.oauth2.client.registration.google.client-id=**_YOUR_GOOGLE_APP_CLIENT_ID_**
+<br>spring.security.oauth2.client.registration.google.client-secret=**_YOUR_GOOGLE_APP_CLIENT_SECRET_**
 
 <br>Example of proper configuration:
-![UqJZ7xf](https://github.com/Salonce/WeatherAndClothes/assets/27849647/eb7f8780-b428-42cd-935a-ee69e50ec934)
+
 
 
 
