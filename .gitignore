@@ -34,7 +34,3 @@ build/
 
 # Project exclude paths
 /out/
-
-# Sensitive information
-/src/main/resources/application.properties
-/src/main/resources/application.yml

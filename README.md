@@ -15,26 +15,9 @@ Built in accordance to REST principles.
 
 
 <b>How to run?</b> <br>
-1. You will need an account on https://openweathermap.org/api (free version is enough) to get an API KEY for calls to properly configure the application in the fourth step.
-2. You will also need a google account to create CLIENT ID and CLIENT SECRET for OAuth2 (if you don't know how, there are instructions on the internet, for example here: https://developers.google.com/workspace/guides/create-credentials).
-3. Create an _"application.properties"_ under the path <i>"src/main/resources/application.properties"</i>.
-4. In the _"application.properties"_ file, write the following to set up your database, external API and OAuth2 Security:
-<br>
-<br>
-<br>spring.jpa.hibernate.ddl-auto=update
-<br>spring.datasource.url=jdbc:mysql://${MYSQL_HOST:localhost}:3306/**_DATABASE_NAME_**
-<br>spring.datasource.username=**_USERNAME_** 
-<br>spring.datasource.password=**_PASSWORD_** 
-<br>spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver 
-<br>
-<br>#WeatherAPI
-<br>weather-api-token.token=**_YOUR_WEATHER_API_KEY_**
-<br>
-<br>#Security
-<br>spring.security.oauth2.client.registration.google.client-id=**_YOUR_GOOGLE_APP_CLIENT_ID_**
-<br>spring.security.oauth2.client.registration.google.client-secret=**_YOUR_GOOGLE_APP_CLIENT_SECRET_**
-
-<br>Example of proper configuration:
+1. Register on https://openweathermap.org/api (free version is enough) to get an API KEY for calls.
+2. On https://console.cloud.google.com/apis/, create a new project and get API credentials (CLIENT ID and CLIENT SECRET) for OAuth2 (if you don't know how, there are instructions on the internet, for example here: https://developers.google.com/workspace/guides/create-credentials).
+3. Provide all necessary configuration information in the <i>src/main/resources/application.properties</i> file either directly or place it in your system environment variables (by default).
 
 
 
