@@ -14,7 +14,7 @@
     <div class="mb-3">
         <label for="weight" class="form-label">Weight</label>
         <input type="text" class="form-control" id="weight" th:placeholder="*{weight}" th:field="*{weight}">
-        <p th:if="${#fields.hasErrors('weight')}" th:text="'Weight should contain only integer values between 0-1000'" style="color: red">Weight Error</p>
+        <p th:if="${#fields.hasErrors('weight')}" th:text="'Weight should contain only floating point numbers between 0 and 1000.'" style="color: red">Weight Error</p>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>

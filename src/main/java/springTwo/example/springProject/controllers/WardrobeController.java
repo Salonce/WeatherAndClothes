@@ -70,7 +70,7 @@ public class WardrobeController {
     }
 
     @PatchMapping(value = "/wardrobe/{id}")
-    public String updateItem(@PathVariable("id") String itemId, @ModelAttribute("item") Item item, BindingResult bindingResult, Model model, Authentication authentication){
+    public String updateItem(@PathVariable("id") String itemId, @Valid @ModelAttribute("item") Item item, BindingResult bindingResult, Model model, Authentication authentication){
         if (bindingResult.hasErrors())
             return "itemUpdate";
         if (itemService.updateItem(authentication, itemId, item)){
