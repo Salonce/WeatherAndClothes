@@ -1,4 +1,4 @@
-package Salonce.WeatherWardrobe.springProject;
+package Salonce.WeatherWardrobe;
 
 
 import org.junit.jupiter.api.Test;

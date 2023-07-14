@@ -1,4 +1,4 @@
-package Salonce.WeatherWardrobe.springProject.repositories;
+package Salonce.WeatherWardrobe.repositories;
 
 import Salonce.WeatherWardrobe.repositories.ItemRepository;
 import org.junit.jupiter.api.AfterEach;

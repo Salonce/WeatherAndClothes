@@ -1,4 +1,4 @@
-package Salonce.WeatherWardrobe.springProject.controllers;
+package Salonce.WeatherWardrobe.controllers;
 
 import Salonce.WeatherWardrobe.controllers.WeatherController;
 import org.junit.jupiter.api.Disabled;

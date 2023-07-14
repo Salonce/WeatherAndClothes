@@ -1,4 +1,4 @@
-package Salonce.WeatherWardrobe.springProject.services;
+package Salonce.WeatherWardrobe.services;
 
 import Salonce.WeatherWardrobe.services.AuthenticationService;
 import Salonce.WeatherWardrobe.services.ItemService;
@@ -20,6 +20,7 @@ class ItemServiceTest {
 
     private ItemService itemService;
     private AuthenticationService authenticationService;
+
     @Mock private ItemRepository itemRepository;
 
     @BeforeEach
