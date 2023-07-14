@@ -20,7 +20,7 @@ public class ItemService {
         return itemRepository.findAll();
     }
 
-    public List<Item> getItemsList(Authentication authentication, String sortMethod){
+    public List<Item> getUserItemsList(Authentication authentication, String sortMethod){
         if(sortMethod != null && sortMethod.equals("byWeight"))
             return getItemsListByWeight(authentication);
         return getItemsListByName(authentication);
@@ -28,43 +28,41 @@ public class ItemService {
 
     public List<Item> getItemsListByName(Authentication authentication){
         return itemRepository.findByUserIdOrderByName(getUserId(authentication));
-    };
+    }
 
-    public List<Item> getItemsListByWeight(Authentication authentication){ return itemRepository.findByUserIdOrderByWeight(getUserId(authentication)); };
+    public List<Item> getItemsListByWeight(Authentication authentication){
+        return itemRepository.findByUserIdOrderByWeight(getUserId(authentication));
+    }
 
     public Item getItemById(String id) {
-        return itemRepository.getReferenceById(parseIdToLong(id));
+        return itemRepository.getReferenceById(Long.parseLong(id));
     }
 
 
     public Boolean userHasItem(Authentication authentication, String itemId){
-        String userId = getUserId(authentication);
-        return itemRepository.existsByIdAndUserId(parseIdToLong(itemId), userId);
+        String userId = getUserId(authentication); // test authenticationService.getUserId(authentication);
+        return itemRepository.existsByIdAndUserId(Long.parseLong(itemId), userId);
     }
 
     @Transactional
     public Boolean updateItem(Authentication authentication, String itemId, Item item) {
         if (userHasItem(authentication, itemId)) {
-            updateItemz(itemId, item);
+            Item updatedItem = itemRepository.getItemById(Long.parseLong(itemId));
+            updatedItem.setName(item.getName());
+            updatedItem.setWeight(item.getWeight());
             return true;
         }
         return false;
     }
 
-    public void updateItemz(String id, Item updatedItem){
-        Item item = itemRepository.getItemById(parseIdToLong(id));
-        item.setName(updatedItem.getName());
-        item.setWeight(updatedItem.getWeight());
-    }
-
-    public void newItem(Authentication authentication, Item item){
+    public void saveItem(Authentication authentication, Item item){
         String userId = getUserId(authentication);
         item.setUserId(userId);
-        saveItem(item);
+        itemRepository.save(item);
     }
 
     public Boolean deleteItem(Authentication authentication, String itemId){
-        Long id = parseIdToLong(itemId);
+        Long id = Long.parseLong(itemId);
         String userId = getUserId(authentication);
         Integer numDeleted = itemRepository.deleteByIdAndUserId(id, userId);
         return (numDeleted > 0) ? true : false;
@@ -74,18 +72,9 @@ public class ItemService {
         itemRepository.deleteById(id);
     }
 
-    public void saveItem(Item item){
-        itemRepository.save(item);
-    }
-
-
     //PRIVATE
     private String getUserId(Authentication authentication) {
         return authenticationService.getUserId(authentication);
-    }
-
-    private Long parseIdToLong(String id){
-        return Long.parseLong(id);
     }
 
 

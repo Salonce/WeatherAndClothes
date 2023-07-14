@@ -22,6 +22,8 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 
     @Transactional
     Integer deleteByIdAndUserId(Long id, String userId);
+
+
     /*
     DEPRECATED
 

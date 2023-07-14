@@ -37,7 +37,7 @@ public class WardrobeController {
     public String getWardrobe(@RequestParam(value = "wardrobeSort", required = false) String sortMethod, Model model, Authentication authentication){
         BigDecimal bigDecimal = itemService.getItemsListByName(authentication).stream().map(i -> i.getWeight()).reduce(BigDecimal.ZERO, BigDecimal::add);
         model.addAttribute("totalWeight", bigDecimal);
-        model.addAttribute("itemList", itemService.getItemsList(authentication, sortMethod));
+        model.addAttribute("itemList", itemService.getUserItemsList(authentication, sortMethod));
 
         return "wardrobe";
     }
@@ -53,7 +53,7 @@ public class WardrobeController {
     public String addItem(@Valid @ModelAttribute("item") Item item, BindingResult bindingResult, Model model, Authentication authentication){
         if (bindingResult.hasErrors())
             return "itemAdd";
-        itemService.newItem(authentication, item);
+        itemService.saveItem(authentication, item);
         addWardrobeTemplateModels(model, authentication);
         return "wardrobe";
     }

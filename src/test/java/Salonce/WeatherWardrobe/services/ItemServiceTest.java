@@ -1,26 +1,26 @@
 package Salonce.WeatherWardrobe.services;
 
-import Salonce.WeatherWardrobe.services.AuthenticationService;
-import Salonce.WeatherWardrobe.services.ItemService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import Salonce.WeatherWardrobe.entities.Item;
 import Salonce.WeatherWardrobe.repositories.ItemRepository;
+import org.springframework.security.core.Authentication;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class ItemServiceTest {
 
     private ItemService itemService;
-    private AuthenticationService authenticationService;
 
+    @Mock private AuthenticationService authenticationService;
     @Mock private ItemRepository itemRepository;
 
     @BeforeEach
@@ -28,7 +28,6 @@ class ItemServiceTest {
         itemService = new ItemService(authenticationService, itemRepository);
     }
 
-    @Disabled
     @Test
     void getItemsList() {
         //WHEN
@@ -54,19 +53,81 @@ class ItemServiceTest {
         assertThat(longArgumentCaptor.getValue()).isEqualTo(id);
     }
 
+    @Disabled
+    @Test
+    void testUserItemsList() {
+    }
+    @Disabled
+    @Test
+    void getItemsListByName() {
+    }
+    @Disabled
+    @Test
+    void getItemsListByWeight() {
+    }
+
+    @Test
+    void getItemById() {
+        //given
+        String itemId = "12345";
+
+        //when
+        itemService.getItemById(itemId);
+
+        //then
+        verify(itemRepository).getReferenceById(Long.parseLong(itemId));
+    }
+
+    @Test
+    void userHasItem() {
+        //given
+        Authentication authentication = mock(Authentication.class);
+        String itemId = "10150103";
+        when(authenticationService.getUserId(authentication)).thenReturn("050301");
+
+        //when
+        itemService.userHasItem(authentication, itemId);
+
+        //then
+        verify(itemRepository).existsByIdAndUserId(Long.parseLong(itemId), "050301");
+    }
+
+    @Disabled
+    @Test
+    void updateItem() {
+
+    }
+
     @Test
     void saveItem() {
         //given
         Item item = new Item();
+        Authentication authentication = Mockito.mock(Authentication.class);
+        ArgumentCaptor<Item> itemCaptor = ArgumentCaptor.forClass(Item.class);
 
         //when
-        itemService.saveItem(item);
+        itemService.saveItem(authentication, item);
+        verify(itemRepository).save(itemCaptor.capture());
 
         //then
-        ArgumentCaptor<Item> itemArgumentCaptor = ArgumentCaptor.forClass(Item.class);
+        assertThat(item.equals(itemCaptor.getValue()));
+    }
 
-        verify(itemRepository).save(itemArgumentCaptor.capture());
+    @Test
+    void deleteById() {
+        //given
+        Long testId = 12345L;
+        Item item = new Item();
+        item.setId(testId);
 
-        assertThat(itemArgumentCaptor.getValue()).isEqualTo(item);
+        //when
+        itemService.deleteById(testId);
+
+        //then
+        ArgumentCaptor<Long> longArgumentCaptor = ArgumentCaptor.forClass(Long.class);
+
+        Mockito.verify(itemRepository).deleteById(longArgumentCaptor.capture());
+
+        assertThat(longArgumentCaptor.getValue().equals(testId));
     }
 }
