@@ -15,8 +15,9 @@ public class AuthenticationServiceTest {
     @Test
     void getUserName() {
         //GIVEN
+        String expectedName = "Arthur Ant";
         OidcUser oidcUser = mock(OidcUser.class);
-        when(oidcUser.getGivenName()).thenReturn("some name");
+        when(oidcUser.getGivenName()).thenReturn(expectedName);
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(oidcUser, null);
 
@@ -24,14 +25,15 @@ public class AuthenticationServiceTest {
         String userName = authenticationService.getUserName(authentication);
 
         //THEN
-        assertEquals("some name", userName);
+        assertEquals(expectedName, userName);
     }
 
     @Test
     void getUserEmail() {
         //GIVEN
+        String expectedEmail = "email@gmail.com";
         OidcUser oidcUser = mock(OidcUser.class);
-        when(oidcUser.getEmail()).thenReturn("some email");
+        when(oidcUser.getEmail()).thenReturn(expectedEmail);
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(oidcUser, null);
 
@@ -39,15 +41,15 @@ public class AuthenticationServiceTest {
         String userEmail = authenticationService.getUserEmail(authentication);
 
         //THEN
-        assertEquals("some email", userEmail);
+        assertEquals(expectedEmail, userEmail);
     }
 
     @Test
     void getUserId() {
         //GIVEN
-        final String SOME_ID = "some id";
+        String expectedId = "859701775623";
         OidcUser oidcUser = mock(OidcUser.class);
-        when(oidcUser.getSubject()).thenReturn(SOME_ID);
+        when(oidcUser.getSubject()).thenReturn(expectedId);
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(oidcUser, null);
 
@@ -55,7 +57,21 @@ public class AuthenticationServiceTest {
         String userId = authenticationService.getUserId(authentication);
 
         //THEN
-        assertEquals(SOME_ID, userId);
+        assertEquals(expectedId, userId);
+    }
 
+    @Test
+    void testReturningAuthName(){
+        //GIVEN
+        String expectedName = "Arthur Ant";
+        Authentication auth = mock(Authentication.class);
+        when(auth.getPrincipal()).thenReturn(mock(Object.class));
+        when(auth.getName()).thenReturn(expectedName);
+
+        //WHEN
+        String authName = authenticationService.getUserId(auth);
+
+        //THEN
+        assertEquals(authName, expectedName);
     }
 }
