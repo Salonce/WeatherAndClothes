@@ -21,7 +21,7 @@ To run the app you will need a weatherAPI key and google OAuth2 credentials.
 - Get a key for resource requests.
 2. On https://console.cloud.google.com/apis/
 - Create a new project.
-- Fill the OAuth2 consent screen with necessary data. If you need help, you visit https://developers.google.com/workspace/guides/configure-oauth-consent
+- Fill the OAuth2 consent screen with necessary data. If you need help, visit https://developers.google.com/workspace/guides/configure-oauth-consent
 - Create OAuth client ID credentials for a web application, while doing that, add Authorized redirect URIs to: http://localhost:8080/login/oauth2/code/google <br>
 - If you need help, visit https://developers.google.com/workspace/guides/create-credentials
 - Now get CLIENT ID and CLIENT SECRET.
@@ -34,7 +34,7 @@ To run the app you will need a weatherAPI key and google OAuth2 credentials.
 
 ## Run in Docker:
 1. Create file ' <b><i>.env</i></b> ' in the root folder of the project. Its path is included in <b><i>.gitignore</i></b>.
-2. Open it (e. g. in notepad) and fill with environment variables like in the example below:
+2. Open it (e.g. in notepad) and fill with environment variables like in the example below:
 
 ```dotenv
 #DATABASE
@@ -62,6 +62,6 @@ WEATHER_API_TOKEN=your_weather_api_token
 
 ## Screenshots:
 
-| Wardrobe                                                    |                         Adding item                         |                                                     Weather |
-|:------------------------------------------------------------|:-----------------------------------------------------------:|------------------------------------------------------------:|
+|                          Wardrobe                           |                         Adding item                         |                           Weather                           |
+|:-----------------------------------------------------------:|:-----------------------------------------------------------:|:-----------------------------------------------------------:|
 | ![1](src/main/resources/static/images/git_repository/1.png) | ![2](src/main/resources/static/images/git_repository/2.png) | ![3](src/main/resources/static/images/git_repository/3.png) |
